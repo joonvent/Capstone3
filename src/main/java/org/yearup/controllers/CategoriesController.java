@@ -26,6 +26,11 @@ public class CategoriesController
     public List<Category> getAll()
     {
         // find and return all categories
+
+
+
+
+
         return null;
     }
 
