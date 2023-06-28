@@ -79,20 +79,21 @@ public class CategoriesController {
             // get a list of product by categoryId
             return productDao.listByCategoryId(categoryId);
         } catch (Exception e) {
-        e.printStackTrace();
-        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops We're Sorry");
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops We're Sorry");
         }
 
     }
+
     // add annotation to call this method for a POST action
     // add annotation to ensure that only an ADMIN can call this function
     @PreAuthorize("hasRole('ADMIN')")
-@RequestMapping(path = "/categories", method = RequestMethod.POST)
-@ResponseStatus(value = HttpStatus.CREATED)
+    @RequestMapping(path = "/categories", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.CREATED)
     public Category addCategory(@RequestBody Category category) {
         try {
             return categoryDao.create(category);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Try Again");
         }
 
@@ -101,31 +102,31 @@ public class CategoriesController {
 
     // add annotation to call this method for a PUT (update) action - the url path must include the categoryId
     // add annotation to ensure that only an ADMIN can call this function
-@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(path = "categories/{id}", method = RequestMethod.PUT)
-    public void updateCategory(@PathVariable int id, @RequestBody Category category)
-    {
+    public void updateCategory(@PathVariable int id, @RequestBody Category category) {
 
         try {
             categoryDao.update(id, category);
-        }
-        catch (Exception e ){
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Try Again");
 
         }
         // update the category by id
         //test this manually
-
     }
 
 
     // add annotation to call this method for a DELETE action - the url path must include the categoryId
     // add annotation to ensure that only an ADMIN can call this function
     @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(path = "/categories{id}" , method = RequestMethod.DELETE)
-    public void deleteCategory(@PathVariable int id)
-    {
-        categoryDao.delete(id);
-        // delete the category by id
+    @RequestMapping(path = "categories/{id}", method = RequestMethod.DELETE)
+    public void deleteCategory(@PathVariable int id) {
+        try {
+            categoryDao.delete(id);
+            // delete the category by id
+        } catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Try Again");
+        }
     }
 }
