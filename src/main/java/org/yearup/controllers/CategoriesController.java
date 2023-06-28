@@ -105,7 +105,14 @@ public class CategoriesController {
     @RequestMapping(path = "categories/{id}", method = RequestMethod.PUT)
     public void updateCategory(@PathVariable int id, @RequestBody Category category)
     {
-         categoryDao.update(id , category);
+
+        try {
+            categoryDao.update(id, category);
+        }
+        catch (Exception e ){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Try Again");
+
+        }
         // update the category by id
         //test this manually
 
