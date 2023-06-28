@@ -41,7 +41,14 @@ public class CategoriesController
 @RequestMapping(path = "/categories" , method = RequestMethod.GET)
     public List<Category> getAll()
     {
-        return categoryDao.getAllCategories();
+        try{
+            return categoryDao.getAllCategories();
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
         // find and return all categories
     }
 
@@ -68,20 +75,7 @@ try {
 
 
 
-        //try
-        //        {
-        //            var product = productDao.getById(id);
-        //
-        //            if(product == null)
-        //                throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        //
-        //            return product;
-        //        }
-        //        catch(Exception ex)
-        //        {
-        //            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
-        //        }
-        //    }
+
     }
 
     // the url to return all products in category 1 would look like this
