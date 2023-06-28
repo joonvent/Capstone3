@@ -80,7 +80,7 @@ public class CategoriesController {
             return productDao.listByCategoryId(categoryId);
         } catch (Exception e) {
         e.printStackTrace();
-        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops We're Sorry")
+        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops We're Sorry");
         }
 
     }
@@ -92,7 +92,9 @@ public class CategoriesController {
     public Category addCategory(@RequestBody Category category) {
         try {
             return categoryDao.create(category);
-        }catch ()
+        }catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Try Again");
+        }
 
 
     }
