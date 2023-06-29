@@ -75,13 +75,14 @@ public class ProductsController
         }
     }
 
-    @PutMapping("{id}")
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PutMapping("{id}")
     public void updateProduct(@PathVariable int id, @RequestBody Product product)
     {
         try
         {
-            productDao.create(product);
+            productDao.create( id , product);
         }
         catch(Exception ex)
         {
