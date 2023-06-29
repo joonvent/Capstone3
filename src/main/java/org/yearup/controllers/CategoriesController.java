@@ -107,7 +107,7 @@ public class CategoriesController {
     public void updateCategory(@PathVariable int id, @RequestBody Category category) {
 
         try {
-            categoryDao.update(id, category);
+            categoryDao.update(id ,category);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Try Again");
 
