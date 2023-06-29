@@ -60,7 +60,13 @@ public class CategoriesController {
     public List<Product> getProductsById(@PathVariable int categoryId) {
         // get a list of product by categoryId
        // return (List<Product>) categoryDao.getById(categoryId);
-        return null;
+
+        try{
+            return (List<Product>) categoryDao.getById(categoryId);
+        }
+        catch (Exception ex){
+          throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Oops... our bad.");
+        }
     }
 
     // add annotation to call this method for a POST action

@@ -7,4 +7,6 @@ class MySqlCategoryDaoTest {
     //error handling for each method i may copy from products
     //test
 
+    
+
 }
