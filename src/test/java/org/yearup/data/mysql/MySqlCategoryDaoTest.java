@@ -30,7 +30,7 @@ class MySqlCategoryDaoTest extends BaseDaoTestClass{
 
 
                 //assert
-        assertNotNull(actual, "The returned category should not be null.");
+        assertNotNull(actual, "should not return null");
         assertEquals(expected.getCategoryId(), actual.getCategoryId());
             }
 
@@ -42,14 +42,16 @@ class MySqlCategoryDaoTest extends BaseDaoTestClass{
 
         //arrange
 
+        int categoryID = 1;
 
 
         //act
+        dao.delete(categoryID);
 
 
 
         ///assert
-
-
+        Category deletedCategory = dao.getById(categoryID);
+        assertNull(deletedCategory, "Category is gone");
     }
 }
